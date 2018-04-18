@@ -9,12 +9,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 const MongoClient = require("mongodb").MongoClient; //allows the connection to the database
 
 //ALL OF THE ABOVE IS THE SETUP STUFF
-MongoClient.connect("mongodb://localhost:27017", function(err, db){
+MongoClient.connect("mongodb://localhost:27017", function(err, client){
   if(err){           //port 27017 is a mongo default!!
     console.log(err);
     return;   //essentially, log the error and then get the hell out
   }
 
+  const db = client.db("philadelphia_flyers");
+
+  app.get("/players", function(req, res){
+    const playerRoster = db.collection();
+  })
   app.get("/", function(req, res){  //looks like it does in Java!
     res.json("ok");
   });
