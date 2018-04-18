@@ -15,17 +15,20 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
     return;   //essentially, log the error and then get the hell out
   }
 
-  const db = client.db("philadelphia_flyers");
+  const db = client.db("philadelphia_flyers"); //establishes the database we are connecting to
 
-  app.get("/players", function(req, res){
+  app.get("/players", function(req, res){      //this will display all of the instances in the database
     const playerRoster = db.collection("players");
-    coffeeCollection.find().toArray(function(err, players){
-      if(err){
+    playerRoster.find().toArray(function(err, players){
+      if(err){          ///again if there is an error log it out and get away
         console.log(err);
         res.status(500);
+        res.send();
       }
+      res.json(players)
     })
-  })
+  });
+
   app.get("/", function(req, res){  //looks like it does in Java!
     res.json("ok");
   });
