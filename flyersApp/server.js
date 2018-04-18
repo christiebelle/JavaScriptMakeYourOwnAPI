@@ -18,7 +18,13 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
   const db = client.db("philadelphia_flyers");
 
   app.get("/players", function(req, res){
-    const playerRoster = db.collection();
+    const playerRoster = db.collection("players");
+    coffeeCollection.find().toArray(function(err, players){
+      if(err){
+        console.log(err);
+        res.status(500);
+      }
+    })
   })
   app.get("/", function(req, res){  //looks like it does in Java!
     res.json("ok");
