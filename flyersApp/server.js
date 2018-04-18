@@ -5,6 +5,7 @@ const path = require("path"); //this is a node package that is already pre insta
 
 app.use(bodyParser.json()); //telling our server that we will accept in json objects
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("client/build"));
 
 const MongoClient = require("mongodb").MongoClient; //allows the connection to the database
 

@@ -3,7 +3,7 @@ const config = {
   output: {
     filename: "bundle.js",     //where we want webpack to put the one file for our app
     path: __dirname + "/build"
-  }
+  },
   devtool: "source-map" //this will tell us exactly where our errors are when debugging
 };
 
