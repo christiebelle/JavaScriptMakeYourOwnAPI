@@ -10,9 +10,19 @@ const makeRequest = function(url, callback){
 };
 
 const playersRequestComplete = function(){
-  console.log("Request complete! 🏒");
-  debugger;
+  const responseText = this.responseText;
+  const playerRoster = JSON.parse(responseText);
+  populateList(playerRoster);
 };
+
+const populateList = function(playerRoster){
+  for(let player of playerRoster){
+    const p = document.createElement("p");
+    p.innerText = `Player: ${player.name}, Position: ${player.position}, wearing Jersey Number: ${player.jerseyNo}`;
+
+    document.body.appendChild(p);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function(){
   app();
